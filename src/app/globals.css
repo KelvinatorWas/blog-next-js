@@ -1,0 +1,45 @@
+
+.no_dec {
+  text-decoration: none;
+  color: black;
+}
+
+.nb {
+  font-weight: bold;
+}
+
+.ib {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.sz4 {
+  font-size: 4px;
+}
+.sz8 {
+  font-size: 8px;
+}
+.sz12 {
+  font-size: 12px;
+}
+.sz16 {
+  font-size: 16px;
+}
+.sz20 {
+  font-size: 20px;
+}
+.sz24 {
+  font-size: 24px;
+}
+
+.cfx {
+  display: flex;
+}
+
+.rw {
+  flex-direction: row;
+}
+
+.cn {
+  flex-direction: column;
+}

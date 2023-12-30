@@ -1,0 +1,42 @@
+
+.info {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(128, 128, 128, 0.304);
+  backdrop-filter: blur(16px);
+  border-radius: 0 0 5px 5px;
+  border-top: 2px solid rgba(114, 0, 114, 0.201);
+}
+
+.image {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 512px;
+  background-repeat:no-repeat;
+  background-color: aqua;
+  border-radius: 12px;
+  margin: 1rem 8px;
+  align-self: center;
+  aspect-ratio: 16/9;
+}
+
+
+
+.title {
+  margin: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.264);
+  padding: 6px 6px;
+  font-size: x-large;
+  cursor: pointer;
+
+}
+
+.content {
+  color: black;
+  padding: 6px 6px;
+  max-width: 250ch;
+  max-height: 4ch;
+  font-size: medium;
+  overflow-y: hidden;
+  word-wrap: break-word;
+}

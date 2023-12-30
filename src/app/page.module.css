@@ -1,8 +1,13 @@
+
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+  padding: 1rem 2.5rem;
+}
+
+.recent_post {
+  
+  margin: 1rem 0;
+  font-weight: bold;
+  align-self: center;
 }
