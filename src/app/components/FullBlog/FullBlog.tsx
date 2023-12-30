@@ -12,9 +12,7 @@ const cleanStr = (str:string) => str.replaceAll("_"," ");
 
 const FullBlog = async ({name}: FullBlogProp) => { 
   const {title, createdAt, updatedAt, content} = await getData<BlogData>(linkComb(DB_BLOGS, cleanStr(name)));
-
   const dateCreated = formatDistance(new Date(), createdAt!)
-
   const dateUpdate = updatedAt ? formatDistance(new Date(), updatedAt!) : ""
 
 
@@ -23,8 +21,6 @@ const FullBlog = async ({name}: FullBlogProp) => {
       <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
     );
   };
-
-
 
   return (
     <>

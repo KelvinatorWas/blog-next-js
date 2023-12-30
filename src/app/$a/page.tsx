@@ -14,8 +14,8 @@ export default function AdminPanel() {
       className={classComb("sz16", "no_dec", "nb")}
     />
     <LinkTo
-      link="$a/CreateBlog"
-      innerText="Comments"
+      link="$a/Blogs"
+      innerText="All Blogs"
       className={classComb("sz16", "no_dec", "nb")}
     />
   </section>
