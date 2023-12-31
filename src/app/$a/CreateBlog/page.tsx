@@ -8,6 +8,7 @@ import { BlogData } from '@/app/page';
 import { uploadData } from '@/utils/crud';
 import { DB_BLOGS } from '@/utils/ServerLinks';
 import { format } from 'date-fns';
+import { CButton } from '@/app/components/CButton/CButton';
 
 export default function AdminPanel() {
   const [editorState, setEditorState] = useState(
@@ -21,6 +22,12 @@ export default function AdminPanel() {
     const rawContentState = convertToRaw(contentState);
     const html = draftToHtml(rawContentState);
     return html;
+  };
+
+  const StrToHTML = ({ htmlContent }:{htmlContent:string}) => {
+    return (
+      <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+    );
   };
 
   const onSubmit = () => {
@@ -60,7 +67,16 @@ export default function AdminPanel() {
       editorClassName="editorClassName"
       onEditorStateChange={setEditorState}
     />
-    <button onClick={onSubmit}>Submit</button>
+    <CButton
+      innerText='Submit'
+      onClick={onSubmit}
+      specialClass='green'
+    />
+    <h2>Preview:</h2>
+    <StrToHTML
+      htmlContent={convertToHtml()}
+    />
+    
   </section>
   
   );
