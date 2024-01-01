@@ -3,7 +3,9 @@ import { classComb } from "@/utils/ClassComb";
 import css from './CButton.module.css'
 import { MouseEventHandler } from "react";
 
-type btnType = "red" | "yellow" | "green" | "";
+type btnType = "red" | "yellow" | "green" | "white" | "";
+type outlineType = "ored" | "oyellow" | "ogreen" | "owhite" | "";
+
 
 type CButtonProp = {
   innerText?: string;
@@ -29,7 +31,7 @@ export const CButton = ({innerText, className, specialClass, onClick}:CButtonPro
 
   return (
     <button
-      className={classComb(className ? className : btn.className!, css[btn.specialClass!])}
+      className={classComb(css.btn, className ? className : btn.className!, css[btn.specialClass!])}
       onClick={(e) => btn.onClick ? btn.onClick(e) : () => {}}
     >
       {btn.innerText}

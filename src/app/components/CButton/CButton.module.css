@@ -5,7 +5,6 @@
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
-  flex: 1;
 }
 
 .btn:hover {
@@ -25,5 +24,11 @@
 .yellow {
   background-color: yellow;
   border: 2px solid yellow;
+  color:black;
+}
+
+.white {
+  background-color: whitesmoke;
+  border: 2px solid rgb(220, 214, 214);
   color:black;
 }

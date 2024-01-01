@@ -43,3 +43,7 @@
 .cn {
   flex-direction: column;
 }
+
+.fgrow {
+  flex: 1;
+}
