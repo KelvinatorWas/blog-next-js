@@ -32,3 +32,9 @@
   border: 2px solid rgb(220, 214, 214);
   color:black;
 }
+
+.blue {
+  background-color: rgb(0, 81, 255);
+  border: 2px solid rgb(0, 81, 255);
+  color:white;
+}

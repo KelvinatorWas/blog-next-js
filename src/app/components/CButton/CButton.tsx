@@ -3,7 +3,7 @@ import { classComb } from "@/utils/ClassComb";
 import css from './CButton.module.css'
 import { MouseEventHandler } from "react";
 
-type btnType = "red" | "yellow" | "green" | "white" | "";
+type btnType = "red" | "yellow" | "green" | "white" | "blue" | "";
 type outlineType = "ored" | "oyellow" | "ogreen" | "owhite" | "";
 
 

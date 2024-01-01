@@ -3,6 +3,8 @@ import { getData } from "@/utils/crud";
 import { linkComb, DB_BLOGS } from "@/utils/ServerLinks";
 import { formatDistance } from "date-fns";
 import { createElement } from "react";
+import CommentSection from "../CommentSection/CommentSection";
+import { classComb } from "@/utils/ClassComb";
 
 type FullBlogProp = {
   name:string
@@ -30,10 +32,7 @@ const FullBlog = async ({name}: FullBlogProp) => {
       />
       <p>Created {dateCreated} ago.</p>
       <p>Last Update {dateUpdate} ago.</p>
-
-      <div>
-        Comment
-      </div>
+      <CommentSection/>
     </>
   );
 };

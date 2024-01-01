@@ -1,0 +1,13 @@
+
+
+.comment_section {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  background-color: rgb(243, 243, 243);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.587);
+  margin: 4rem 0;
+  padding: 2rem;
+
+  border-radius: 5px;
+}
