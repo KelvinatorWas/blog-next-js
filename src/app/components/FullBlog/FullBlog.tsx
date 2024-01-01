@@ -30,6 +30,10 @@ const FullBlog = async ({name}: FullBlogProp) => {
       />
       <p>Created {dateCreated} ago.</p>
       <p>Last Update {dateUpdate} ago.</p>
+
+      <div>
+        Comment
+      </div>
     </>
   );
 };

@@ -10,7 +10,7 @@ import { DB_BLOGS, DB_POST_TAGS } from "@/utils/ServerLinks";
 import { format } from "date-fns";
 import css from "./createBlog.module.css";
 import { TagData, TagPostData } from "@/utils/Types";
-import TagManager from "../Components/TagManager/TagManager";
+import TagManager from "../../components/TagManager/TagManager";
 
 const randInt = (): number => {
   const randomNumber = Math.floor(Math.random() * 100001);

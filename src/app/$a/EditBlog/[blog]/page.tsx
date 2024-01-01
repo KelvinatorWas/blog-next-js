@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { Editor} from "react-draft-wysiwyg";
 import { ContentState, EditorState, convertFromHTML, convertToRaw } from 'draft-js';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import TagManager from "../../Components/TagManager/TagManager";
+import TagManager from "../../../components/TagManager/TagManager";
 import { TagData, TagPostData } from "@/utils/Types";
 
 
