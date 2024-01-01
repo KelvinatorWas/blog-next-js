@@ -1,14 +1,17 @@
 'use client'
 import { CButton } from "@/app/components/CButton/CButton";
 import { BlogData } from "@/app/page";
-import { DB_BLOGS, linkComb } from "@/utils/ServerLinks";
-import { getData, updateData } from "@/utils/crud";
+import { DB_BLOGS, DB_POST_TAGS, linkComb } from "@/utils/ServerLinks";
+import { deleteData, getData, updateData, uploadData } from "@/utils/crud";
 import { format } from "date-fns";
 import draftToHtml from "draftjs-to-html";
 import { useEffect, useState } from "react";
 import { Editor} from "react-draft-wysiwyg";
 import { ContentState, EditorState, convertFromHTML, convertToRaw } from 'draft-js';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import TagManager from "../../Components/TagManager/TagManager";
+import { TagData, TagPostData } from "@/utils/Types";
+
 
 const cleanStr = (str:string) => str.replaceAll("_"," ");
 
@@ -56,7 +59,7 @@ const EditBlog = ({params}: {params:{blog:string}}) => {
     );
   };
 
-  const onSave = () => {
+  const onSave = (blogTags: TagData[]) => {
 
     if (!blogData || !oldTitle) return;
     const updatedAt = format(new Date(), 'yyyy-MM-dd HH-mm-ss');
@@ -72,8 +75,18 @@ const EditBlog = ({params}: {params:{blog:string}}) => {
       updatedAt: updatedAt,
     }
     updateData(linkComb(DB_BLOGS, `${blogData.post_id}`), newBlog);
-
     setOldTitle("");
+
+    // Delete Tags
+    deleteData(linkComb(DB_POST_TAGS, `${blogData.post_id}`));
+
+    const allTags:TagPostData[] = []
+
+    blogTags.forEach((tag) => allTags.push({tag_id:tag.tag_id, post_id:blogData.post_id})
+    );
+
+    // Tags
+    uploadData(DB_POST_TAGS, allTags);
 
     editorState.clear;
   }
@@ -99,11 +112,21 @@ const EditBlog = ({params}: {params:{blog:string}}) => {
       onEditorStateChange={setEditorState}
     />
 
-    <CButton
+    {
+      blogData ? 
+      <TagManager
+        onSubmit={onSave}
+        mode="Save"
+        post_id={blogData.post_id}
+      /> : "Loading..."
+    }
+   
+
+    {/* <CButton
       innerText='Save'
       specialClass='green'
       onClick={onSave}
-    />
+    /> */}
 
     <h2>Preview:</h2>
     <StrToHTML

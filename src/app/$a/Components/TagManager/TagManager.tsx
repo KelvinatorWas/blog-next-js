@@ -1,17 +1,21 @@
 'use client'
 import { CButton } from "@/app/components/CButton/CButton";
 import { classComb } from "@/utils/ClassComb";
-import { DB_TAGS, linkComb } from "@/utils/ServerLinks";
-import { TagData } from "@/utils/Types";
+import { DB_POST_TAGS, DB_TAGS, linkComb } from "@/utils/ServerLinks";
+import { AllTagData, TagData, TagPostData } from "@/utils/Types";
 import { getData } from "@/utils/crud";
 import { ChangeEvent, useEffect, useState } from "react";
 import css from './TagManager.module.css'
 
+type ModeType = "Save" | "Submit";
+
 type TagManagerProp = {
   onSubmit: (blogTags:TagData[]) => void
+  mode?: ModeType
+  post_id?: number;
 }
 
-const TagManagerHook = () => {
+const TagManagerHook = (mode:ModeType, post_id:number|undefined=undefined) => {
   const [tags, setTags] = useState<TagData[]>([]);
   const [blogTags, setBlogTags] = useState<TagData[]>([]);
   const [currTag, setCurrTag] = useState<TagData>({name:"", tag_id:-1});
@@ -20,6 +24,15 @@ const TagManagerHook = () => {
     try {
       const getAllTags = await getData<TagData[]>(linkComb(DB_TAGS));
       setTags(getAllTags);
+      
+      console.log("id", post_id);
+      if (mode === "Save" && post_id) {
+        const currTags = await getData<AllTagData[]>(linkComb(DB_POST_TAGS, `${post_id}`));
+        setBlogTags(currTags);
+
+        console.log(blogTags);
+      }
+
     } catch (error) {
       console.error("Error fetching blogs:", error);
     }
@@ -62,7 +75,10 @@ const TagManagerHook = () => {
 
 }
 
-const TagManager = ({onSubmit}:TagManagerProp) => {
+const TagManager = ({onSubmit, mode, post_id}:TagManagerProp) => {
+  
+  const stateMode = mode ? mode : "Submit";
+  const statePostID = post_id ? post_id : undefined;
 
   const {
     addBlogTag,
@@ -70,13 +86,13 @@ const TagManager = ({onSubmit}:TagManagerProp) => {
     onClickTag,
     tags,
     blogTags,
-  } = TagManagerHook();
+  } = TagManagerHook(stateMode, statePostID);
 
 
   return (
     <>
     <div className={classComb("cfx", "cm")}>
-      <CButton innerText="Submit" onClick={ () => onSubmit(blogTags) } specialClass="green" />
+      <CButton innerText={stateMode} onClick={ () => onSubmit(blogTags) } specialClass="green" />
 
       <div
         className={classComb(css.tag_pad)}
