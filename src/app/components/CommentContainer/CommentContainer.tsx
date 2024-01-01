@@ -8,8 +8,15 @@ import { DB_COMMENTS, linkComb } from '@/utils/ServerLinks';
 import { CommentSectionProp } from '../CommentSection/CommentSection';
 import { randInt } from '@/utils/utils';
 
-const CommentContainer = ({post_id}: CommentSectionProp) => {
-  const [comments, setAllComments] = useState<CommentData[]>()
+// idea add through props the comments and a copy of the form one :), so you send them to there them to 
+
+type CommentContainerProp = {
+  post_id:number,
+  comments: CommentData[],
+  setAllComments: (data:CommentData[]) => void;
+}
+
+const CommentContainer = ({post_id, comments, setAllComments}: CommentContainerProp) => {
 
   const fetchData = async () => {
     try {

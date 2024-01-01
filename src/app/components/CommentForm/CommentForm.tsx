@@ -7,10 +7,13 @@ import { CommentData } from '@/utils/Types';
 import { format } from 'date-fns';
 import { uploadData } from '@/utils/crud';
 import { DB_COMMENTS } from '@/utils/ServerLinks';
-import { CommentSectionProp } from '../CommentSection/CommentSection';
 
+export type CommentFormProp = {
+  post_id: number;
+  addComment: (data:CommentData[]) => void;
+}
 
-const CommentForm = ({post_id}:CommentSectionProp) => {
+const CommentForm = ({post_id, addComment}:CommentFormProp) => {
   const [comment, setComment] = useState("");
 
   const onSubmitComment =  (e:MouseEvent) => {
@@ -29,6 +32,8 @@ const CommentForm = ({post_id}:CommentSectionProp) => {
 
     uploadData(DB_COMMENTS, Comment);
     setComment("");
+
+    addComment([Comment]);
 
     console.log("HEllo: ", comment);
   }
