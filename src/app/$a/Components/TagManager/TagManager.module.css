@@ -1,3 +1,10 @@
+.tag_pad {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  column-gap: 1rem;
+}
+
 .blog_tags {
   margin: 1rem 0;
   display: grid;

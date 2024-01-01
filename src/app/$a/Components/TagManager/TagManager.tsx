@@ -7,9 +7,8 @@ import { getData } from "@/utils/crud";
 import { ChangeEvent, useEffect, useState } from "react";
 import css from './TagManager.module.css'
 
-
 type TagManagerProp = {
-  onSubmit: () => void
+  onSubmit: (blogTags:TagData[]) => void
 }
 
 const TagManagerHook = () => {
@@ -63,7 +62,6 @@ const TagManagerHook = () => {
 
 }
 
-
 const TagManager = ({onSubmit}:TagManagerProp) => {
 
   const {
@@ -77,8 +75,8 @@ const TagManager = ({onSubmit}:TagManagerProp) => {
 
   return (
     <>
-      <div className={classComb("cfx", "cm")}>
-      <CButton innerText="Submit" onClick={onSubmit} specialClass="green" />
+    <div className={classComb("cfx", "cm")}>
+      <CButton innerText="Submit" onClick={ () => onSubmit(blogTags) } specialClass="green" />
 
       <div
         className={classComb(css.tag_pad)}
