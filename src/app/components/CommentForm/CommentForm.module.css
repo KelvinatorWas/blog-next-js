@@ -21,18 +21,18 @@
   outline: none;
   border-radius: 5px;
   box-shadow: 0 10px 10px rgba(43, 43, 43, 0.1);
-  border-bottom: 2px solid rgba(0, 100, 100, 0.467);
+  border-bottom: 2px solid rgba(0, 19, 103, 0.402);
   
   padding: 12px 5px;
   padding-left: 1rem;
 }
 
 .comment_area:focus {
-  border-bottom: 2px solid rgba(0, 255, 255, 0.467);
+  border-bottom: 2px solid rgb(0, 81, 255);
 }
 
 .comment_area::placeholder {
-  color: rgb(0, 128, 255);
+  color: rgb(0, 81, 255);
 }
 
 .data_container {

@@ -15,8 +15,18 @@ type AllTagData = {
   name: string;
 };
 
+type CommentData = {
+  comment_id?: number;
+  post_id: number;
+  user_id: number;
+  content: string;
+  createdAt: string | null;
+  updatedAt?: string | null;
+}
+
 export type {
   TagData,
   TagPostData,
-  AllTagData
+  AllTagData,
+  CommentData
 }

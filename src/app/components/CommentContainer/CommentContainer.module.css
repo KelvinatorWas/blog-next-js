@@ -1,7 +1,6 @@
 
 
 .comment_container {
-  margin-top: 2rem 0;
   display: flex;
   flex-direction: column;
   background-color: rgb(255, 255, 255);
@@ -9,12 +8,12 @@
   padding: 1rem 1rem;
   box-shadow: 0 0 10px rgba(43, 43, 43, 0.1);
 
+  margin: .5rem 0;
 }
 
 .comment_text {
   display: flex;
   flex: 1;
-  height: 8rem;
   font-size: medium;
   font-weight: bold;
   resize: none;
@@ -24,6 +23,11 @@
   padding: 12px 5px;
   padding-left: 1rem;
   margin-top: 4px;
+  background-color: rgba(232, 232, 232, 0.387);
+  max-height: 8rem;
+
+  overflow-y: scroll;
+  word-break:break-all;
 }
 
 .data_container {

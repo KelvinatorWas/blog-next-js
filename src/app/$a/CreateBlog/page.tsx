@@ -11,11 +11,9 @@ import { format } from "date-fns";
 import css from "./createBlog.module.css";
 import { TagData, TagPostData } from "@/utils/Types";
 import TagManager from "../../components/TagManager/TagManager";
+import { randInt } from "@/utils/utils";
 
-const randInt = (): number => {
-  const randomNumber = Math.floor(Math.random() * 100001);
-  return randomNumber;
-}
+
 
 export default function AdminPanel() {
   const [editorState, setEditorState] = useState(() =>

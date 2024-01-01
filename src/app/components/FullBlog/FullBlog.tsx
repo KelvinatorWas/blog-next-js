@@ -13,7 +13,7 @@ type FullBlogProp = {
 const cleanStr = (str:string) => str.replaceAll("_"," ");
 
 const FullBlog = async ({name}: FullBlogProp) => { 
-  const {title, createdAt, updatedAt, content} = await getData<BlogData>(linkComb(DB_BLOGS, cleanStr(name)));
+  const {title, createdAt, updatedAt, content, post_id} = await getData<BlogData>(linkComb(DB_BLOGS, cleanStr(name)));
   const dateCreated = formatDistance(new Date(), createdAt!)
   const dateUpdate = updatedAt ? formatDistance(new Date(), updatedAt!) : ""
 
@@ -32,7 +32,7 @@ const FullBlog = async ({name}: FullBlogProp) => {
       />
       <p>Created {dateCreated} ago.</p>
       <p>Last Update {dateUpdate} ago.</p>
-      <CommentSection/>
+      <CommentSection post_id={post_id}/>
     </>
   );
 };
