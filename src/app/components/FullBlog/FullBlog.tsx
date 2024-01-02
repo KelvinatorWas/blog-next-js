@@ -5,7 +5,7 @@ import { formatDistance } from "date-fns";
 import { createElement } from "react";
 import CommentSection from "../CommentSection/CommentSection";
 import { classComb } from "@/utils/ClassComb";
-
+import css from './FullBlog.module.css'
 type FullBlogProp = {
   name:string
 }
@@ -26,12 +26,15 @@ const FullBlog = async ({name}: FullBlogProp) => {
 
   return (
     <>
+      <div className={css.blog_container}>
+
       <h1>{title}</h1>
       <StrToHTML
         htmlContent={content}
-      />
+        />
       <p>Created {dateCreated} ago.</p>
       <p>Last Update {dateUpdate} ago.</p>
+      </div>
       <CommentSection post_id={post_id}/>
     </>
   );

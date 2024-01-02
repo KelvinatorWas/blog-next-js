@@ -7,6 +7,7 @@ import { classComb } from "@/utils/ClassComb";
 import { BlogContainer } from "./BlogContainer/BlogContainer";
 import { LinkTo } from "@/app/components/LinkTo";
 import { redirect, useRouter } from "next/navigation";
+import css from './blogs.module.css'
 
 const AllBlogs = () => {
   const router = useRouter();
@@ -41,12 +42,15 @@ const AllBlogs = () => {
   };
 
   return (
-    <section className={classComb("cfx cn")}>
-      <h1>All blogs</h1>
+    <>
+    <h1>All Blogs</h1>
+    
+    <section className={css.create_container}>
       {blogs.map((blog) => (
         <BlogContainer key={blog.post_id} blogData={blog} onDelete={onDelete} onEdit={onEdit} />
-      ))}
+        ))}
     </section>
+    </>
   );
 };
 

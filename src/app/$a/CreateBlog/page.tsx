@@ -60,18 +60,20 @@ export default function AdminPanel() {
 
 
   return (
-    <section style={{ backgroundColor: "gray", padding: "16px" }}>
-      <h1>Hello, Admin C:</h1>
+    <>
+    <h1>New Blog</h1>
 
-      <div>
-        <label className="nb">Title:</label>
+    <section className={css.create_container}>
+      <div className={css.input_container}>
+        <label className={css.title}>Title</label>
         <input
+          className={css.input}
           type="text"
           onChange={(e) => {
             setTitle(e.target.value);
           }}
           value={title}
-        />
+          />
       </div>
 
       <Editor
@@ -80,14 +82,19 @@ export default function AdminPanel() {
         wrapperClassName="wrapperClassName"
         editorClassName="editorClassName"
         onEditorStateChange={setEditorState}
-      />
+        />
 
       <TagManager
         onSubmit={onSubmit}
       />
 
-      <h2>Preview:</h2>
-      <StrToHTML htmlContent={convertToHtml()} />
+      <div className={css.create_container}>
+        <h2>Preview</h2>
+        <div className={css.preview_container}>
+          <StrToHTML htmlContent={convertToHtml()} />
+        </div>
+      </div>
     </section>
+    </>
   );
 }

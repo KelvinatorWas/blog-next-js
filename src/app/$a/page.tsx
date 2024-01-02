@@ -7,7 +7,7 @@ export default function AdminPanel() {
   <section
   className={classComb("cfx cn")}
   >
-    <h1>Hello, Admin C:</h1>
+    <h1>Admin Panel</h1>
     <LinkTo
       link="$a/CreateBlog"
       innerText="Create New Blog"
@@ -16,6 +16,11 @@ export default function AdminPanel() {
     <LinkTo
       link="$a/Blogs"
       innerText="All Blogs"
+      className={classComb("sz16", "no_dec", "nb")}
+    />
+    <LinkTo
+      link="$a/Comments"
+      innerText="All Comments"
       className={classComb("sz16", "no_dec", "nb")}
     />
   </section>

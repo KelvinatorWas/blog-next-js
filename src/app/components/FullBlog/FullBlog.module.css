@@ -2,3 +2,23 @@
 .comment_section {
   display: flex;
 }
+
+.blog_container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  padding: 1rem 1rem;
+  box-shadow: 0 0 10px rgba(43, 43, 43, 0.1);
+
+  margin: .5rem 0;
+}
+
+.preview_container {
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 12px 5px;
+  padding-left: 1rem;
+  margin-top: 4px;
+  background-color: rgba(232, 232, 232, 0.387);
+}

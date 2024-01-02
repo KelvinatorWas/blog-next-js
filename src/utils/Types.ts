@@ -22,6 +22,7 @@ type CommentData = {
   content: string;
   createdAt: string | null;
   updatedAt?: string | null;
+  post_name?: string;
 }
 
 export type {

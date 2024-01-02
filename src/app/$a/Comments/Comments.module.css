@@ -1,0 +1,62 @@
+
+
+.comment_container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  padding: 1rem 1rem;
+  box-shadow: 0 0 10px rgba(43, 43, 43, 0.1);
+
+  margin: .5rem 0;
+}
+
+.comment_text {
+  display: flex;
+  flex: 1;
+  font-size: medium;
+  font-weight: bold;
+  resize: none;
+  border: 2px solid transparent;
+  outline: none;
+  border-radius: 5px;
+  padding: 12px 5px;
+  padding-left: 1rem;
+  margin-top: 4px;
+  background-color: rgba(232, 232, 232, 0.387);
+  max-height: 8rem;
+
+  overflow-y: scroll;
+  word-break:break-all;
+}
+
+.data_container {
+  display: flex;
+  color: black;
+  font-weight: bold;
+  column-gap: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+
+}
+
+.pfp {
+  width:  3rem;
+  height: 3rem;
+  background-color: rgb(174, 174, 174);
+  border-radius:100%;
+  border: 1px solid black;
+}
+
+.blog_data {
+  display: flex;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.delete {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
