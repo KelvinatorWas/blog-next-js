@@ -47,3 +47,11 @@
 .fgrow {
   flex: 1;
 }
+.ck-powered-by {
+  display: none;
+}
+
+.public-DraftStyleDefault-ltr {
+  text-align: none;
+
+}

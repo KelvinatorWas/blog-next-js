@@ -1,0 +1,71 @@
+.wrapper_class {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  margin-bottom: .5rem;
+}
+
+.textarea_class {
+  padding: .6rem .5rem;
+  border: 1px solid #ccc;
+  margin-bottom: .5rem;
+}
+
+.settings_class {
+  display: flex;
+  flex-direction: row;
+  padding: .6rem .5rem;
+  border: 1px solid #ccc;
+  margin-bottom: .5rem;
+  column-gap: .5rem;
+}
+
+.editor_class {
+  background-color:lightgray;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+.toolbar_class {
+  border: 1px solid #ccc;
+}
+
+.icon {
+  display: flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  justify-content: center;
+  align-items: center;
+
+
+  border-radius: 4px;
+  border: 2px solid gray;
+  cursor: pointer;
+}
+.icon:hover {
+  border: 2px solid rgb(0, 25, 216);
+}
+
+.svgWhite {
+  fill:white !important;
+}
+
+.active {
+  background-color: rgb(0, 25, 216);
+  fill:white;
+  border: 2px solid rgb(0, 25, 216);
+}
+
+.font_size {
+  display: flex;
+  background-color: transparent;
+  font-weight: bold;
+  min-height: 28px;
+  border-radius: 4px;
+  border: 2px solid gray;
+  cursor: pointer;
+  align-items: center;
+}
+
+.center {
+  text-align: center;
+}
+

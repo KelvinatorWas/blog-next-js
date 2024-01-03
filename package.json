@@ -9,13 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^40.2.0",
+    "@ckeditor/ckeditor5-react": "^6.2.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.1",
     "@mui/material": "^5.15.1",
+    "@types/draft-js": "^0.11.17",
+    "contenido": "^1.2.10",
     "date-fns": "^3.0.6",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
+    "immutable": "^4.3.4",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",

@@ -1,8 +1,8 @@
 "use client";
-import { EditorState, convertToRaw } from "draft-js";
+import { ContentState, EditorState, convertToRaw } from "draft-js";
 import { useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import draftToHtml from "draftjs-to-html";
 import { BlogData } from "@/app/page";
 import { uploadData } from "@/utils/crud";
@@ -12,14 +12,16 @@ import css from "./createBlog.module.css";
 import { TagData, TagPostData } from "@/utils/Types";
 import TagManager from "../../components/TagManager/TagManager";
 import { randInt } from "@/utils/utils";
-
-
+import MyEditor from "@/app/components/Editor/Editor";
 
 export default function AdminPanel() {
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
+  const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
   const [title, setTitle] = useState("");
+
+  const onEditorChange = (editorState:EditorState) => {
+    
+    setEditorState(editorState);
+  }
 
   const convertToHtml = () => {
     const contentState = editorState.getCurrentContent();
@@ -67,6 +69,7 @@ export default function AdminPanel() {
       <div className={css.input_container}>
         <label className={css.title}>Title</label>
         <input
+          placeholder="Title..."
           className={css.input}
           type="text"
           onChange={(e) => {
@@ -75,14 +78,17 @@ export default function AdminPanel() {
           value={title}
           />
       </div>
+        
+      <div className="wrapper-class-name">
+        <MyEditor/>
+      </div>
 
       <Editor
+
         editorState={editorState}
-        toolbarClassName="toolbarClassName"
-        wrapperClassName="wrapperClassName"
-        editorClassName="editorClassName"
-        onEditorStateChange={setEditorState}
-        />
+        onEditorStateChange={onEditorChange}
+      />
+      
 
       <TagManager
         onSubmit={onSubmit}
