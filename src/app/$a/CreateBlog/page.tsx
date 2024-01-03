@@ -1,9 +1,5 @@
 "use client";
-import { ContentState, EditorState, convertToRaw } from "draft-js";
 import { useState } from "react";
-import { Editor } from "react-draft-wysiwyg";
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
-import draftToHtml from "draftjs-to-html";
 import { BlogData } from "@/app/page";
 import { uploadData } from "@/utils/crud";
 import { DB_BLOGS, DB_POST_TAGS } from "@/utils/ServerLinks";
@@ -15,19 +11,11 @@ import { randInt } from "@/utils/utils";
 import MyEditor from "@/app/components/Editor/Editor";
 
 export default function AdminPanel() {
-  const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
   const [title, setTitle] = useState("");
+  const [HTML, setHTML] = useState("");
 
-  const onEditorChange = (editorState:EditorState) => {
-    
-    setEditorState(editorState);
-  }
-
-  const convertToHtml = () => {
-    const contentState = editorState.getCurrentContent();
-    const rawContentState = convertToRaw(contentState);
-    const html = draftToHtml(rawContentState);
-    return html;
+  const updateHTML = (e:string) => {
+    setHTML(e);
   };
 
   const StrToHTML = ({ htmlContent }: { htmlContent: string }) => {
@@ -40,7 +28,7 @@ export default function AdminPanel() {
     const newBlog: BlogData = {
       post_id: randInt(),
       title: title,
-      content: convertToHtml(),
+      content: HTML,
       createdAt: date,
       updatedAt: null,
     };
@@ -57,7 +45,6 @@ export default function AdminPanel() {
     // Tags
     uploadData(DB_POST_TAGS, allTags);
 
-    editorState.clear;
   };
 
 
@@ -80,14 +67,8 @@ export default function AdminPanel() {
       </div>
         
       <div className="wrapper-class-name">
-        <MyEditor/>
+        <MyEditor setHTML={updateHTML}/>
       </div>
-
-      <Editor
-
-        editorState={editorState}
-        onEditorStateChange={onEditorChange}
-      />
       
 
       <TagManager
@@ -97,7 +78,7 @@ export default function AdminPanel() {
       <div className={css.create_container}>
         <h2>Preview</h2>
         <div className={css.preview_container}>
-          <StrToHTML htmlContent={convertToHtml()} />
+          <StrToHTML htmlContent={HTML} />
         </div>
       </div>
     </section>

@@ -9,8 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^40.2.0",
-    "@ckeditor/ckeditor5-react": "^6.2.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.1",
@@ -21,12 +19,17 @@
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "immutable": "^4.3.4",
+    "lexical": "^0.12.5",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
     "react-draft-wysiwyg": "^1.15.0"
   },
   "devDependencies": {
+    "@lexical/list": "^0.12.5",
+    "@lexical/react": "^0.12.5",
+    "@lexical/rich-text": "^0.12.5",
+    "@lexical/selection": "^0.12.5",
     "@types/draft-convert": "^2.1.8",
     "@types/draftjs-to-html": "^0.8.4",
     "@types/node": "^20",
