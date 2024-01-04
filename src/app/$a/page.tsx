@@ -13,7 +13,7 @@ interface User {
 const AdminPanel = async () => {
   const session = await getServerSession(authOptions);
   if (!session) {
-    redirect('http://localhost:3000/api/auth/signin?callbackUrl=/$a');
+    redirect('http://localhost:3000/api/auth/signin?callbackUrl=/');
   }
 
   return (

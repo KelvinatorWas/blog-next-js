@@ -26,7 +26,8 @@ export const uploadData = async <T>(link: string, data: T) => {
     });
 
     if (!res.ok) {
-      throw new Error(`Failed to upload data. Status: ${res.status}`);
+      return [];
+      //throw new Error(`Failed to upload data. Status: ${res.status}`);
     }
 
     return res.json();
