@@ -13,3 +13,10 @@
 
   margin: .5rem 0;
 }
+
+.tag_section {
+  display: flex;
+  margin: 1rem 0;
+  justify-content: flex-end;
+  column-gap: .5rem;
+}

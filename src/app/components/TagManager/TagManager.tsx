@@ -20,23 +20,6 @@ const TagManagerHook = (mode:ModeType, post_id:number|undefined=undefined) => {
   const [blogTags, setBlogTags] = useState<TagData[]>([]);
   const [currTag, setCurrTag] = useState<TagData>({name:"", tag_id:-1});
 
-  const fetchData = async () => {
-    try {
-      const getAllTags = await getData<TagData[]>(linkComb(DB_TAGS));
-      setTags(getAllTags);
-      
-      console.log("id", post_id);
-      if (mode === "Save" && post_id) {
-        const currTags = await getData<AllTagData[]>(linkComb(DB_POST_TAGS, `${post_id}`));
-        setBlogTags(currTags);
-
-        console.log(blogTags);
-      }
-
-    } catch (error) {
-      console.error("Error fetching blogs:", error);
-    }
-  };
 
   const addBlogTag = () => {
     if (!currTag.name) return;
@@ -47,23 +30,39 @@ const TagManagerHook = (mode:ModeType, post_id:number|undefined=undefined) => {
       [...blogTags, currTag]
     );
     setCurrTag({...currTag, name:""})
-  }
+  };
 
   const onChangeTag = (e:ChangeEvent<HTMLSelectElement>) => {
     const id = +e.target.value;
 
     setCurrTag(tags[id]);
-  }
+  };
 
   const onClickTag = (index:number) => {
     console.log(index)
     const post_tags = blogTags.filter((_, id) => id !== index); 
     setBlogTags(post_tags);
-  }
+  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const getAllTags = await getData<TagData[]>(linkComb(DB_TAGS));
+        setTags(getAllTags);
+        
+        console.log("id", post_id);
+        if (mode === "Save" && post_id) {
+          const currTags = await getData<AllTagData[]>(linkComb(DB_POST_TAGS, `${post_id}`));
+          setBlogTags(currTags);
+  
+        }
+  
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    };
     fetchData();
-  }, []);
+  }, [post_id, mode]);
 
   return {
     addBlogTag,
@@ -88,7 +87,6 @@ const TagManager = ({onSubmit, mode, post_id}:TagManagerProp) => {
     blogTags,
   } = TagManagerHook(stateMode, statePostID);
 
-
   return (
     <>
     <div className={classComb("cfx", "cm")}>
@@ -96,8 +94,7 @@ const TagManager = ({onSubmit, mode, post_id}:TagManagerProp) => {
 
       <div
         className={classComb(css.tag_pad)}
-        style={{ justifyContent: "flex-end" }}
-      >
+        style={{ justifyContent: "flex-end" }}>
         <select name="Tags" id="tags" onChange={onChangeTag}>
           {tags.map((tag, index) => (
             <option key={tag.tag_id} value={index}>
@@ -112,15 +109,15 @@ const TagManager = ({onSubmit, mode, post_id}:TagManagerProp) => {
     
     <div className={css.blog_tags}>
       {
-      blogTags.map((tag, index) =>
-        <CButton key={tag.tag_id}
-          innerText={tag.name}
-          specialClass="white"
-          onClick={() => {
-            onClickTag(index);
-          }
-        }
-        /> 
+        blogTags.map((tag, index) =>
+          <CButton key={tag.tag_id}
+            innerText={tag.name}
+            specialClass="white"
+            onClick={() => {
+              onClickTag(index);
+              }
+            }
+          /> 
         )
       }
     </div>

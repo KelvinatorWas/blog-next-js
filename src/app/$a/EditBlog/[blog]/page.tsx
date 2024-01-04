@@ -15,23 +15,23 @@ const EditBlog = ({params}: {params:{blog:string}}) => {
   const [blogData, setBlogData] = useState<BlogData>();
   const [oldTitle, setOldTitle] = useState("");
   const [HTML, setHTML] = useState("");
-
-  const fetchData = async () => {
-    try {
-      console.log(params.blog);
-      const getblogData = await getData<BlogData>(linkComb(DB_BLOGS, cleanStr(params.blog)));
-      
-      setBlogData(getblogData);
-      setOldTitle(getblogData.title);
-
-    } catch (error) {
-      console.error("Error fetching blogs:", error);
-    }
-  };
   
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log(params.blog);
+        const getblogData = await getData<BlogData>(linkComb(DB_BLOGS, cleanStr(params.blog)));
+        
+        setBlogData(getblogData);
+        setOldTitle(getblogData.title);
+  
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    };
+
     fetchData();
-  }, []);
+  }, [params.blog]);
 
   const StrToHTML = ({ htmlContent }:{htmlContent:string}) => {
     return (

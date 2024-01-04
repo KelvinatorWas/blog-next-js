@@ -13,6 +13,7 @@
   font-style: italic;
 }
 
+/* #region Size */
 .sz4 {
   font-size: 4px;
 }
@@ -31,6 +32,7 @@
 .sz24 {
   font-size: 24px;
 }
+/* #endregion */
 
 .cfx {
   display: flex;
@@ -46,4 +48,17 @@
 
 .fgrow {
   flex: 1;
+}
+
+.wfit {
+  width: fit-content;
+}
+
+
+.mv-right {
+  padding-left: 0;
+  transition: padding-left .5s;
+}
+.mv-right:hover {
+  padding-left: .5rem;
 }

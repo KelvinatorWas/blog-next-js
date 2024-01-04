@@ -6,6 +6,8 @@ import { createElement } from "react";
 import CommentSection from "../CommentSection/CommentSection";
 import { classComb } from "@/utils/ClassComb";
 import css from './FullBlog.module.css'
+import TagHook from "./hook/TagHook";
+import { LinkTo } from "../LinkTo";
 type FullBlogProp = {
   name:string
 }
@@ -17,6 +19,7 @@ const FullBlog = async ({name}: FullBlogProp) => {
   const dateCreated = formatDistance(new Date(), createdAt!)
   const dateUpdate = updatedAt ? formatDistance(new Date(), updatedAt!) : ""
 
+  const {tags} = await TagHook(post_id);
 
   const StrToHTML = ({ htmlContent }:{htmlContent:string}) => {
     return (
@@ -27,13 +30,30 @@ const FullBlog = async ({name}: FullBlogProp) => {
   return (
     <>
       <div className={css.blog_container}>
+        <h1>{title}</h1>
 
-      <h1>{title}</h1>
-      <StrToHTML
-        htmlContent={content}
+        <StrToHTML
+          htmlContent={content}
         />
-      <p>Created {dateCreated} ago.</p>
-      <p>Last Update {dateUpdate} ago.</p>
+
+        <p>Created {dateCreated} ago.</p>
+        
+        {
+          dateUpdate ? <p>Last Update {dateUpdate} ago.</p> : ""
+        }
+
+        <div className={css.tag_section}>
+          {
+            tags.map((tag) => 
+            <LinkTo
+              key={tag.name}
+              innerText={`#${tag.name}`}
+              link=""
+              className=""
+            />
+            )
+          }
+        </div>
       </div>
       <CommentSection post_id={post_id}/>
     </>
