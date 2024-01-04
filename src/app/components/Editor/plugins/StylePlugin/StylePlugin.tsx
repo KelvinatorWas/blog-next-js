@@ -16,19 +16,6 @@ type StyleType = {
   state: [boolean, Dispatch<SetStateAction<boolean>>]
 };
 
-const FONT_SIZE_OPTIONS: [string, string][] = [
-  ['10px', '10px'],
-  ['11px', '11px'],
-  ['12px', '12px'],
-  ['13px', '13px'],
-  ['14px', '14px'],
-  ['15px', '15px'],
-  ['16px', '16px'],
-  ['17px', '17px'],
-  ['18px', '18px'],
-  ['19px', '19px'],
-  ['20px', '20px'],
-];
 
 const StylePlugin = (prop: {editor:LexicalEditor}):JSX.Element => {
   const { editor } = prop;

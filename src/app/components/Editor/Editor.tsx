@@ -12,10 +12,10 @@ import { ListItem, SvgIconTypeMap } from '@mui/material';
 import { Code, FormatBold, FormatItalic, FormatStrikethrough, FormatUnderlined } from '@mui/icons-material';
 import ToolBarPlugin from './ToolBarPlugin';
 import { ListItemNode, ListNode } from '@lexical/list';
-import { $getRoot, $getSelection,  } from 'lexical';
+import { $getRoot, $getSelection, $insertNodes,  } from 'lexical';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { useEffect } from 'react';
-import {$generateHtmlFromNodes} from '@lexical/html';
+import {$generateNodesFromDOM} from '@lexical/html';
 
 
 type InlineType = {
@@ -54,9 +54,7 @@ const ToHTML = (props: {check:(state:string) => void}) => {
   useEffect(() => {
     editor.registerUpdateListener(() => {
       editor.update(() => {
-        const selection = $getSelection();
         const t = editor.getRootElement()
-        const htmlString = $generateHtmlFromNodes(editor, selection)
         if (t) check(t?.innerHTML);
       })
     })
@@ -66,7 +64,31 @@ const ToHTML = (props: {check:(state:string) => void}) => {
   return null;
 }
 
-const MyEditor = (prop: {setHTML: (str:string) => void}) => {
+const FromHtmlToLexical = (props: {html:string}) => {
+  const [editor] = useLexicalComposerContext();
+  const {html} = props;
+  useEffect(() => {
+    editor.update(() => {
+      $getRoot().clear();
+
+      const parse = new DOMParser();
+      const dom = parse.parseFromString(html, 'text/html');
+      
+      const lexNodes = $generateNodesFromDOM(editor, dom);
+      console.log("ROUN")
+      $getRoot().select();
+      $insertNodes(lexNodes);
+    })
+
+  }, [html, editor]);
+
+  return null;
+}
+
+
+const MyEditor = (prop: {setHTML: (str:string) => void, htmlString?:string}) => {
+
+  const {setHTML, htmlString} = prop;
 
   const config = {
     namespace: 'editor',
@@ -92,7 +114,8 @@ const MyEditor = (prop: {setHTML: (str:string) => void}) => {
         />
         <HistoryPlugin />
         <ListPlugin/>
-        <ToHTML check={(e) => prop.setHTML(e)}/>
+        <ToHTML check={(e) => setHTML(e)}/>
+        <FromHtmlToLexical html={htmlString ? htmlString : ""}/>
       </LexicalComposer>
     </div>
   );

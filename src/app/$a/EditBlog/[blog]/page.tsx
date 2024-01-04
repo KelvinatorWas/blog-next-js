@@ -1,42 +1,29 @@
 'use client'
-import { CButton } from "@/app/components/CButton/CButton";
 import { BlogData } from "@/app/page";
 import { DB_BLOGS, DB_POST_TAGS, linkComb } from "@/utils/ServerLinks";
 import { deleteData, getData, updateData, uploadData } from "@/utils/crud";
 import { format } from "date-fns";
-import draftToHtml from "draftjs-to-html";
 import { useEffect, useState } from "react";
-import { Editor} from "react-draft-wysiwyg";
-import { ContentState, EditorState, convertFromHTML, convertToRaw } from 'draft-js';
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import TagManager from "../../../components/TagManager/TagManager";
 import { TagData, TagPostData } from "@/utils/Types";
-
+import MyEditor from "@/app/components/Editor/Editor";
+import css from './EditBlog.module.css'
 
 const cleanStr = (str:string) => str.replaceAll("_"," ");
 
 const EditBlog = ({params}: {params:{blog:string}}) => {
   const [blogData, setBlogData] = useState<BlogData>();
-  const [oldTitle, setOldTitle] = useState(blogData?.title);
-  const [editorState, setEditorState] = useState(
-    () => EditorState.createEmpty(),
-  );
+  const [oldTitle, setOldTitle] = useState("");
+  const [HTML, setHTML] = useState("");
 
   const fetchData = async () => {
     try {
-      console.log(params.blog)
+      console.log(params.blog);
       const getblogData = await getData<BlogData>(linkComb(DB_BLOGS, cleanStr(params.blog)));
       
       setBlogData(getblogData);
       setOldTitle(getblogData.title);
 
-      const block = convertFromHTML(getblogData.content)
-
-      setEditorState(
-        EditorState.createWithContent(
-          ContentState.createFromBlockArray(block.contentBlocks, block.entityMap)
-        )
-      )
     } catch (error) {
       console.error("Error fetching blogs:", error);
     }
@@ -46,13 +33,6 @@ const EditBlog = ({params}: {params:{blog:string}}) => {
     fetchData();
   }, []);
 
-  const convertToHtml = () => {
-    const contentState = editorState.getCurrentContent();
-    const rawContentState = convertToRaw(contentState);
-    const html = draftToHtml(rawContentState);
-    return html;
-  };
-
   const StrToHTML = ({ htmlContent }:{htmlContent:string}) => {
     return (
       <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
@@ -60,80 +40,75 @@ const EditBlog = ({params}: {params:{blog:string}}) => {
   };
 
   const onSave = (blogTags: TagData[]) => {
-
     if (!blogData || !oldTitle) return;
-    const updatedAt = format(new Date(), 'yyyy-MM-dd HH-mm-ss');
-    const createdAt = format(blogData.createdAt!, 'yyyy-MM-dd HH-mm-ss');
-
-
-
-    const newBlog:BlogData = {
-      post_id: blogData.post_id,
-      title:oldTitle,
-      content: convertToHtml(),
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-    }
-    updateData(linkComb(DB_BLOGS, `${blogData.post_id}`), newBlog);
-    setOldTitle("");
 
     // Delete Tags
     deleteData(linkComb(DB_POST_TAGS, `${blogData.post_id}`));
 
-    const allTags:TagPostData[] = []
+    const updatedAt = format(new Date(), 'yyyy-MM-dd HH-mm-ss');
+    const createdAt = format(blogData.createdAt!, 'yyyy-MM-dd HH-mm-ss');
 
-    blogTags.forEach((tag) => allTags.push({tag_id:tag.tag_id, post_id:blogData.post_id})
-    );
+    const newBlog:BlogData = {
+      post_id: blogData.post_id,
+      title:oldTitle,
+      content: HTML,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    };
+
+    updateData(linkComb(DB_BLOGS, `${blogData.post_id}`), newBlog);
+    setOldTitle("");
+
+    const allTags:TagPostData[] = [];
+
+    blogTags.forEach((tag) => allTags.push({tag_id:tag.tag_id, post_id:blogData.post_id}));
 
     // Tags
     uploadData(DB_POST_TAGS, allTags);
+  };
 
-    editorState.clear;
-  }
-
+  const updateHTML = (e:string) => {
+    setHTML(e);
+  };
 
   return (
-  <section style={{backgroundColor:'gray', padding:"16px"}}>
-    <h1>{oldTitle}</h1>
+    blogData ? 
+    <section className={css.create_container}>
+      <h1>{oldTitle}</h1>
 
-    <div>
-      <label className='nb'>Title:</label>
-      <input 
-        type="text" 
-        onChange={(e)=>{setOldTitle(e.target.value)}}
-        value={oldTitle}/>
-    </div>
+      <div className={css.input_container}>
+          <label className={css.title}>Title</label>
+          <input
+            placeholder="Title..."
+            className={css.input}
+            type="text"
+            onChange={(e) => {
+              setOldTitle(e.target.value);
+            }}
+            value={oldTitle}
+          />
+      </div>
 
-    <Editor
-      editorState={editorState}
-      toolbarClassName="toolbarClassName"
-      wrapperClassName="wrapperClassName"
-      editorClassName="editorClassName"
-      onEditorStateChange={setEditorState}
-    />
-
-    {
-      blogData ? 
+      <MyEditor 
+        setHTML={updateHTML}
+        htmlString={blogData.content}
+      />
+      
       <TagManager
         onSubmit={onSave}
         mode="Save"
         post_id={blogData.post_id}
-      /> : "Loading..."
-    }
-   
+      /> 
+      
+      <h2>Preview</h2>
 
-    {/* <CButton
-      innerText='Save'
-      specialClass='green'
-      onClick={onSave}
-    /> */}
+      <StrToHTML
+        htmlContent={HTML}
+      />
+    </section>
 
-    <h2>Preview:</h2>
-    <StrToHTML
-      htmlContent={convertToHtml()}
-    />
-  </section>
+    : <h2>Loading...</h2>
   )
-}
+};
 
 export default EditBlog;
