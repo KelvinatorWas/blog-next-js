@@ -36,7 +36,6 @@ const AllBlogs = () => {
   };
 
   const onEdit = (name:string) => {
-    console.log("REDERECT")
     // eslint-disable-next-line react-hooks/rules-of-hooks
     router.push(linkComb("/$a/EditBlog", name));
   };

@@ -75,7 +75,6 @@ const FromHtmlToLexical = (props: {html:string}) => {
       const dom = parse.parseFromString(html, 'text/html');
       
       const lexNodes = $generateNodesFromDOM(editor, dom);
-      console.log("ROUN")
       $getRoot().select();
       $insertNodes(lexNodes);
     })

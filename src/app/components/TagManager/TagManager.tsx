@@ -39,7 +39,7 @@ const TagManagerHook = (mode:ModeType, post_id:number|undefined=undefined) => {
   };
 
   const onClickTag = (index:number) => {
-    console.log(index)
+
     const post_tags = blogTags.filter((_, id) => id !== index); 
     setBlogTags(post_tags);
   };
@@ -50,7 +50,6 @@ const TagManagerHook = (mode:ModeType, post_id:number|undefined=undefined) => {
         const getAllTags = await getData<TagData[]>(linkComb(DB_TAGS));
         setTags(getAllTags);
         
-        console.log("id", post_id);
         if (mode === "Save" && post_id) {
           const currTags = await getData<AllTagData[]>(linkComb(DB_POST_TAGS, `${post_id}`));
           setBlogTags(currTags);

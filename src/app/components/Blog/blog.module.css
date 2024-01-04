@@ -2,41 +2,88 @@
 .info {
   display: flex;
   flex-direction: column;
-  background-color: rgba(128, 128, 128, 0.304);
-  backdrop-filter: blur(16px);
-  border-radius: 0 0 5px 5px;
-  border-top: 2px solid rgba(114, 0, 114, 0.201);
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  padding: 1rem 1rem;
+
+  margin: .5rem 0;
 }
 
 .image {
-  display: flex;
-  flex-direction: column-reverse;
-  height: 512px;
   background-repeat:no-repeat;
-  background-color: aqua;
+  background-color: white;
   border-radius: 12px;
-  margin: 1rem 8px;
-  align-self: center;
   aspect-ratio: 16/9;
+  width: 25%;
+  height: 25%;
+  flex: 1;
+
+
 }
-
-
 
 .title {
   margin: 0;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.264);
+  border-bottom: 2px solid rgb(0, 81, 255);
   padding: 6px 6px;
   font-size: x-large;
   cursor: pointer;
+  width: fit-content;
+  border-radius: 5px;
+  border-top: 2px solid rgb(0, 81, 255);
 
 }
 
 .content {
   color: black;
   padding: 6px 6px;
-  max-width: 250ch;
+  max-width: 100ch;
   max-height: 4ch;
   font-size: medium;
   overflow-y: hidden;
   word-wrap: break-word;
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  padding: 1rem 1rem;
+  box-shadow: 0 0 10px rgba(43, 43, 43, 0.1);
+
+}
+
+.blog_container {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  padding: 1rem 1rem;
+  box-shadow: 0 0 10px rgba(43, 43, 43, 0.1);
+  align-items: center;
+  column-gap: 8px;
+
+  margin: .5rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 1s;
+  transition: box-shadow 1s;
+}
+
+.blog_container:hover {
+  border-bottom: 2px solid rgb(0, 81, 255);
+  box-shadow: 0 5px 5px rgba(0, 81, 255, 0.291);
+}
+
+.tags {
+  display: flex;
+  margin: 1rem;
+  justify-content: flex-end;
+  column-gap: .5rem;
+
+}
+
+.tag_container {
+  display: flex;
+  padding: 4px;
+  justify-content: flex-end;
+
+  background-color: rgba(255, 255, 255, 0.593);
+  border-radius: 5px;
+  border-bottom: 2px solid rgb(0, 81, 255);
+  backdrop-filter: blur(10px);
 }

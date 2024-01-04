@@ -28,18 +28,18 @@ const getBlogData = async ():Promise<BlogData[]> => {
 export default async function Home() {
   const blogs = await getBlogData();
 
-  console.log(blogs)
-
   return (
     
-    <main className={styles.main}>
+    <main className={styles.blog_container}>
       <h2 className={styles.recent_post}>Most Recent Post</h2>
-      {blogs.map((blog) => 
-        <HeadBlog 
-          key={blog.post_id}
-          data={blog}
-        />
-      )}
+      {
+        blogs.map((blog) => 
+          <HeadBlog 
+            key={blog.post_id}
+            data={blog}
+          />
+        )
+      }
       
     </main>
     

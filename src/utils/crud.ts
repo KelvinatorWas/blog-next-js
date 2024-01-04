@@ -15,7 +15,7 @@ export const getData = async <T>(link:string):Promise<T> => {
 
 export const uploadData = async <T>(link: string, data: T) => {
   try {
-    console.log(link)
+
     const res = await fetch(link, {
       method: 'POST',
       headers: {
@@ -59,7 +59,6 @@ export const deleteData = async <T>(link: string) => {
 
 export const updateData = async <T>(link: string, data: T) => {
   try {
-    console.log(link)
     const res = await fetch(link, {
       method: 'PUT',
       headers: {

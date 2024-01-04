@@ -1,0 +1,27 @@
+.blog_container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  padding: 1rem 1rem;
+  box-shadow: 0 0 10px rgba(43, 43, 43, 0.1);
+
+  margin: .5rem 0;
+}
+
+.filter_container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(232, 232, 232);
+  border-radius: 6px;
+  padding: 1rem 1rem;
+  box-shadow: 0 0 10px rgba(43, 43, 43, 0.1);
+  border-bottom: 2px solid rgba(0, 19, 103, 0.402);
+
+  margin: .5rem 0;
+}
+
+.filter_container:hover {
+  border-bottom: 2px solid rgb(0, 81, 255);
+  box-shadow: 0 5px 5px rgba(0, 81, 255, 0.291);
+}

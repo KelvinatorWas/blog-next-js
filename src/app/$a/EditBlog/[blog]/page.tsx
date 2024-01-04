@@ -19,7 +19,6 @@ const EditBlog = ({params}: {params:{blog:string}}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(params.blog);
         const getblogData = await getData<BlogData>(linkComb(DB_BLOGS, cleanStr(params.blog)));
         
         setBlogData(getblogData);

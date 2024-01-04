@@ -35,7 +35,6 @@ const CommentForm = ({post_id, addComment}:CommentFormProp) => {
 
     addComment([Comment]);
 
-    console.log("HEllo: ", comment);
   }
 
   const onCommentChange = (e:ChangeEvent<HTMLTextAreaElement>) => {

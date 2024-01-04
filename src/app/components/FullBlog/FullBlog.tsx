@@ -48,7 +48,13 @@ const FullBlog = async ({name}: FullBlogProp) => {
             <LinkTo
               key={tag.name}
               innerText={`#${tag.name}`}
-              link=""
+              link={{
+                pathname:"/pages/blogs",
+                query: {
+                  "id":`${tag.tag_id}`,
+                  "tag":`${tag.name}`
+                }
+              }}
               className=""
             />
             )
