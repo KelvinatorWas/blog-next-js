@@ -1,11 +1,10 @@
 "use client";
 import { useState } from "react";
-import { BlogData } from "@/app/page";
-import { uploadData } from "@/utils/crud";
+import { uploadData } from "@/utils/Crud";
 import { DB_BLOGS, DB_POST_TAGS } from "@/utils/ServerLinks";
 import { format } from "date-fns";
 import css from "./createBlog.module.css";
-import { TagData, TagPostData } from "@/utils/Types";
+import { BlogData, TagData, TagPostData } from "@/utils/Types";
 import TagManager from "../../components/TagManager/TagManager";
 import { randInt } from "@/utils/utils";
 import MyEditor from "@/app/components/Editor/Editor";

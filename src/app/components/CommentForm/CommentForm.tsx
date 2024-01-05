@@ -5,18 +5,18 @@ import { CButton } from '../CButton/CButton';
 import { ChangeEvent, TextareaHTMLAttributes, useState } from 'react';
 import { CommentData } from '@/utils/Types';
 import { format } from 'date-fns';
-import { uploadData } from '@/utils/crud';
+import { uploadData } from '@/utils/Crud';
 import { DB_COMMENTS } from '@/utils/ServerLinks';
 
 export type CommentFormProp = {
   post_id: number;
   addComment: (data:CommentData[]) => void;
-}
+};
 
 const CommentForm = ({post_id, addComment}:CommentFormProp) => {
   const [comment, setComment] = useState("");
 
-  const onSubmitComment =  (e:MouseEvent) => {
+  const onSubmitComment =  (e:React.MouseEvent) => {
     e.preventDefault();
     if (!comment) return;
 
@@ -39,7 +39,7 @@ const CommentForm = ({post_id, addComment}:CommentFormProp) => {
 
   const onCommentChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
-  }
+  };
 
   return (
     <form className={css.comment_form}>
@@ -68,9 +68,6 @@ const CommentForm = ({post_id, addComment}:CommentFormProp) => {
           onClick={onSubmitComment}
         />
       </div>
-
-      
-
     </form>
   );
 }

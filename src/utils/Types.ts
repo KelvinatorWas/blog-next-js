@@ -1,3 +1,11 @@
+type BlogData = {
+  post_id: number;
+  title:	string;
+  content:	string;
+  createdAt:	string | null;
+  updatedAt:	string | null;
+};
+
 type TagData = {
   name: string;
   tag_id: number;
@@ -23,11 +31,12 @@ type CommentData = {
   createdAt: string | null;
   updatedAt?: string | null;
   post_name?: string;
-}
+};
 
 export type {
+  BlogData,
   TagData,
   TagPostData,
   AllTagData,
-  CommentData
-}
+  CommentData,
+};

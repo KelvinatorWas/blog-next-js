@@ -1,13 +1,11 @@
 'use client'
 import { useEffect, useState } from "react";
-import { BlogData } from "@/app/page";
 import { DB_BLOGS, linkComb } from "@/utils/ServerLinks";
-import { deleteData, getData } from "@/utils/crud";
-import { classComb } from "@/utils/ClassComb";
+import { deleteData, getData } from "@/utils/Crud";
 import { BlogContainer } from "./BlogContainer/BlogContainer";
-import { LinkTo } from "@/app/components/LinkTo";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import css from './blogs.module.css'
+import { BlogData } from "@/utils/Types";
 
 const AllBlogs = () => {
   const router = useRouter();

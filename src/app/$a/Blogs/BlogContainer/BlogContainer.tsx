@@ -1,8 +1,8 @@
 'use client'
 import { CButton } from "@/app/components/CButton/CButton";
 import css from '../blogs.module.css'
-import { BlogData } from "@/app/page";
 import { classComb } from "@/utils/ClassComb";
+import { BlogData } from "@/utils/Types";
 
 
 type BlogContainerProp = {

@@ -5,15 +5,6 @@ import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { $patchStyleText } from "@lexical/selection";
 import css from './FontSizePlugin.module.css'
 
-type StyleType = {
-  type:TextFormatType,
-  title:string,
-  logo:OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
-    muiName: string;
-  }
-  state: [boolean, Dispatch<SetStateAction<boolean>>]
-};
-
 const FONT_SIZES: [string, string][] = [
   ['10px', '10px'],
   ['11px', '11px'],
@@ -43,10 +34,9 @@ const FontSizePlugin = (prop: {editor:LexicalEditor}):JSX.Element => {
         });
       };
     });
-  }
+  };
 
   const Style = (prop: {size:string, title:string}) => <option value={prop.title}>{prop.size}</option>;
-  
   
   return (
     <div className={css.size_class}>

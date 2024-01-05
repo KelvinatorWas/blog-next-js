@@ -1,5 +1,5 @@
 import { DB_ADMINS, linkComb } from "@/utils/ServerLinks";
-import { uploadData } from "@/utils/crud";
+import { uploadData } from "@/utils/Crud";
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";

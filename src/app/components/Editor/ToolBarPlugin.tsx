@@ -6,10 +6,8 @@ import AlignPlugin from "./plugins/AlignPlugin/AlignPlugin";
 import StylePlugin from "./plugins/StylePlugin/StylePlugin";
 import FontSizePlugin from "./plugins/FontSizePlugin/FontSizePlugin";
 
-
 const ToolBarPlugin = () => {
   const [editor] = useLexicalComposerContext();
-  
   
   return ( 
     <div className={css.toolbar_class}>

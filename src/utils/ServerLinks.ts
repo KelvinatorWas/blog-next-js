@@ -6,8 +6,6 @@ const DB_POST_TAGS = BASE_DB_LINK + "/post_tags";
 const DB_COMMENTS = BASE_DB_LINK + "/comments";
 const DB_ADMINS = BASE_DB_LINK + "/admins";
 
-
-
 const linkComb = (...links:string[]):string => links.join("/");
 
 export {

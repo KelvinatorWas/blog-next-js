@@ -1,11 +1,10 @@
 'use client'
-import { BlogData } from "@/app/page";
 import { DB_BLOGS, DB_POST_TAGS, linkComb } from "@/utils/ServerLinks";
-import { deleteData, getData, updateData, uploadData } from "@/utils/crud";
+import { deleteData, getData, updateData, uploadData } from "@/utils/Crud";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import TagManager from "../../../components/TagManager/TagManager";
-import { TagData, TagPostData } from "@/utils/Types";
+import { BlogData, TagData, TagPostData } from "@/utils/Types";
 import MyEditor from "@/app/components/Editor/Editor";
 import css from './EditBlog.module.css'
 

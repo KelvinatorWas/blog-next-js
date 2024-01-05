@@ -8,7 +8,7 @@ import { ListPlugin } from '@lexical/react/LexicalListPlugin';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import { HeadingNode } from '@lexical/rich-text';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
-import { ListItem, SvgIconTypeMap } from '@mui/material';
+import { SvgIconTypeMap } from '@mui/material';
 import { Code, FormatBold, FormatItalic, FormatStrikethrough, FormatUnderlined } from '@mui/icons-material';
 import ToolBarPlugin from './ToolBarPlugin';
 import { ListItemNode, ListNode } from '@lexical/list';
@@ -24,7 +24,7 @@ type InlineType = {
     muiName: string;
   }
   title:string;
-}
+};
 
 const Inlines:InlineType[] = [
   {name:"BOLD", logo:FormatBold, title:"Bold"},
@@ -42,11 +42,11 @@ const theme = {
   heading: {
     h1: css.editorH1
   }
-}
+};
 
 const onError = (error:Error) => {
   console.error(error);
-}
+};
 
 const ToHTML = (props: {check:(state:string) => void}) => {
   const [editor] = useLexicalComposerContext();
@@ -60,9 +60,8 @@ const ToHTML = (props: {check:(state:string) => void}) => {
     })
 
   }, [check, editor]);
-
   return null;
-}
+};
 
 const FromHtmlToLexical = (props: {html:string}) => {
   const [editor] = useLexicalComposerContext();
@@ -82,8 +81,7 @@ const FromHtmlToLexical = (props: {html:string}) => {
   }, [html, editor]);
 
   return null;
-}
-
+};
 
 const MyEditor = (prop: {setHTML: (str:string) => void, htmlString?:string}) => {
 
@@ -97,9 +95,8 @@ const MyEditor = (prop: {setHTML: (str:string) => void, htmlString?:string}) => 
       HeadingNode,
       ListNode,
       ListItemNode,
-    ]
+    ],
   };
-  
 
   return (
     <div className={css.wrapper_class}>
@@ -120,4 +117,4 @@ const MyEditor = (prop: {setHTML: (str:string) => void, htmlString?:string}) => 
   );
 }
 
-export default MyEditor
+export default MyEditor;

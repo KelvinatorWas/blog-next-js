@@ -3,7 +3,7 @@ import { CButton } from "@/app/components/CButton/CButton";
 import { classComb } from "@/utils/ClassComb";
 import { DB_POST_TAGS, DB_TAGS, linkComb } from "@/utils/ServerLinks";
 import { AllTagData, TagData, TagPostData } from "@/utils/Types";
-import { getData } from "@/utils/crud";
+import { getData } from "@/utils/Crud";
 import { ChangeEvent, useEffect, useState } from "react";
 import css from './TagManager.module.css'
 
@@ -39,7 +39,6 @@ const TagManagerHook = (mode:ModeType, post_id:number|undefined=undefined) => {
   };
 
   const onClickTag = (index:number) => {
-
     const post_tags = blogTags.filter((_, id) => id !== index); 
     setBlogTags(post_tags);
   };
@@ -53,7 +52,6 @@ const TagManagerHook = (mode:ModeType, post_id:number|undefined=undefined) => {
         if (mode === "Save" && post_id) {
           const currTags = await getData<AllTagData[]>(linkComb(DB_POST_TAGS, `${post_id}`));
           setBlogTags(currTags);
-  
         }
   
       } catch (error) {

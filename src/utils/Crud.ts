@@ -25,9 +25,8 @@ export const uploadData = async <T>(link: string, data: T) => {
       cache: 'no-store',
     });
 
-    if (!res.ok) {
-      return [];
-    }
+    if (!res.ok) return [];
+
 
     return res.json();
   } catch (error) {
@@ -71,7 +70,7 @@ export const updateData = async <T>(link: string, data: T) => {
     if (!res.ok) {
       throw new Error(`Failed to upload data. Status: ${res.status}`);
     }
-
+    
     return res.json();
   } catch (error) {
     console.error('Error uploading data:', error);

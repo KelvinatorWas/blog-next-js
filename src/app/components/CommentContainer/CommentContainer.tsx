@@ -1,36 +1,32 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
 import { useEffect, useState } from 'react';
 import css from './CommentContainer.module.css'
-import { getData } from '@/utils/crud';
+import { getData } from '@/utils/Crud';
 import { CommentData } from '@/utils/Types';
 import { DB_COMMENTS, linkComb } from '@/utils/ServerLinks';
-import { CommentSectionProp } from '../CommentSection/CommentSection';
 import { randInt } from '@/utils/utils';
-
-// idea add through props the comments and a copy of the form one :), so you send them to there them to 
 
 type CommentContainerProp = {
   post_id:number,
   comments: CommentData[],
   setAllComments: (data:CommentData[]) => void;
-}
+};
 
 const CommentContainer = ({post_id, comments, setAllComments}: CommentContainerProp) => {
 
-  const fetchData = async () => {
-    try {
-      const blogData = await getData<CommentData[]>(linkComb(DB_COMMENTS, `${post_id}`));
-      setAllComments(blogData);
-    } catch (error) {
-      console.error("Error fetching blogs:", error);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const blogData = await getData<CommentData[]>(linkComb(DB_COMMENTS, `${post_id}`));
+        setAllComments(blogData);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    };
     fetchData();
   }, []);
-
 
   if (!comments) return (<p>Loading...</p>);
 
@@ -44,6 +40,7 @@ const CommentContainer = ({post_id, comments, setAllComments}: CommentContainerP
                 <div className={css.pfp}></div>
                 <p>John Doe</p>
               </div>
+
               <span className={css.comment_text}>
                 {comment.content}
               </span>

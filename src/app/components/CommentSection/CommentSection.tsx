@@ -8,7 +8,7 @@ import { CommentData } from '@/utils/Types';
 
 export type CommentSectionProp = {
   post_id: number;
-}
+};
 
 const CommentSection = ({post_id}:CommentSectionProp) => {
   const [comments, setAllComments] = useState<CommentData[]>([])

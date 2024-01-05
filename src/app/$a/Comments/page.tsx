@@ -1,12 +1,11 @@
 'use client'
 import { DB_COMMENTS, linkComb } from "@/utils/ServerLinks";
 import { CommentData } from "@/utils/Types";
-import { deleteData, getData } from "@/utils/crud";
+import { deleteData, getData } from "@/utils/Crud";
 import { useEffect, useState } from "react";
 
 import css from './Comments.module.css'
 import { LinkTo } from "@/app/components/LinkTo";
-import { randInt } from "@/utils/utils";
 import { classComb } from "@/utils/ClassComb";
 import { CButton } from "@/app/components/CButton/CButton";
 

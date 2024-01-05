@@ -15,4 +15,4 @@ export const LinkTo = ({link, className, innerText, as}: {innerText:string, link
       as={as?as:""}
     >{innerText}</Link>
   );
-}
+};

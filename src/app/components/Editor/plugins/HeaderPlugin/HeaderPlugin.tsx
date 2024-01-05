@@ -1,5 +1,4 @@
 import css from "./HeaderPlugin.module.css";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $createHeadingNode, $isHeadingNode } from "@lexical/rich-text";
 import { $setBlocksType } from "@lexical/selection";
 import { $getSelection, $isRangeSelection, LexicalEditor } from "lexical";
@@ -21,9 +20,8 @@ const HeadingPlugin = (prop: {editor:LexicalEditor}):JSX.Element => {
     {type:'h1', title:"Header 1"}, 
     {type:'h2', title:"Header 2"}, 
     {type:"h3", title:"Header 3"}, 
-    {type:"h4", title:"Header 4"}
+    {type:"h4", title:"Header 4"},
   ];
-
 
   const onClick = (e:React.MouseEvent, type:HeadingTypes) => {
     editor.update(() => {
@@ -40,12 +38,10 @@ const HeadingPlugin = (prop: {editor:LexicalEditor}):JSX.Element => {
         }
 
         $setBlocksType(selection, () => $createHeadingNode(type));
-      }
-
+        }
       }
     );
-
-  }
+  };
 
   const Header = ({title, type}: {type:HeadingTypes, title:string}) =>( 
     <div 
