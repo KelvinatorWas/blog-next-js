@@ -15,4 +15,4 @@ bun dev
 ```
 
 ## Requres
-Also download [blog_db](https://github.com/KelvinatorWas/next-js-blog-db) to get the blog data.
+Also download [Blog Database](https://github.com/KelvinatorWas/next-js-blog-db) to acquire the necessary data for the blog.
